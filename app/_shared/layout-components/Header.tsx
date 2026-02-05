@@ -44,7 +44,7 @@ export function Header() {
                                 </Button>
                             </SheetTrigger>
 
-                            <SheetContent side="left" className="w-[280px] p-4">
+                            <SheetContent side="left" className="w-70 p-4">
                                 <nav className="mt-4">
 
                                     <Accordion type="multiple" className="w-full">
@@ -125,7 +125,7 @@ export function Header() {
                             <>
                                 {!isMobile && (
                                     <span className="text-sm font-medium flex items-center gap-1">
-                                        <span><User className="h-5 w-5" /></span>Hi,{userName}!
+                                        <span><User className="h-5 w-5" /></span>Hi, {userName}
                                     </span>
                                 )}
                                 <Button variant="ghost" size="icon">
