@@ -1,3 +1,4 @@
+import { UnpackingJourney } from "@/components/unpacking/UnpackingJourney";
 import { HowItWorks } from "../../components/how-it-works/HowItWorks";
 import { CategorySection } from "./_components/Category";
 import { FeaturedProducts } from "./_components/FeaturedProducts";
@@ -11,6 +12,7 @@ export default function PublicPage() {
      <HeroSection />
      <FeaturedProducts />
      <HowItWorks />
+     <UnpackingJourney />
     </>
   );
 }

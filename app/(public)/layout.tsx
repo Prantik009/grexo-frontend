@@ -1,5 +1,5 @@
 
-import Footer from "../_shared/layout-components/Footer";
+import { Footer } from "../_shared/layout-components/Footer";
 import { Header } from "../_shared/layout-components/Header";
 import { Navbar } from "../_shared/layout-components/Navbar";
 
