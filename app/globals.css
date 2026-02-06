@@ -29,6 +29,7 @@
   --color-accent-foreground: var(--accent-foreground);
 
   --color-destructive: var(--destructive);
+  --color-terracotta: var(--terracotta);
 
   --color-border: var(--border);
   --color-input: var(--input);
