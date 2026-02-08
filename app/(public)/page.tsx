@@ -1,3 +1,4 @@
+// app/(public)/page.tsx
 import { UnpackingJourney } from "@/components/unpacking/UnpackingJourney";
 import { HowItWorks } from "../../components/how-it-works/HowItWorks";
 import { CategorySection } from "./_components/Category";

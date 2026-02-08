@@ -1,4 +1,4 @@
-// app/(public)/_components/stats.ts
+// app/(public)/_data/stats.ts
 import { Users, Leaf, PackageCheck } from "lucide-react"
 
 export const STATS = [

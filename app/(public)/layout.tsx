@@ -1,19 +1,10 @@
-
-import { Footer } from "../_shared/layout-components/Footer";
-import { Header } from "../_shared/layout-components/Header";
-import { Navbar } from "../_shared/layout-components/Navbar";
+// app/(public)/layout.tsx
+import { AppShell } from "../_shared/layout-components/AppShell";
 
 export default function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <Header />
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </>
-  );
+  return <AppShell>{children}</AppShell>;
 }
