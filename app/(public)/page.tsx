@@ -3,6 +3,8 @@ import { HowItWorks } from "../../components/how-it-works/HowItWorks";
 import { CategorySection } from "./_components/Category";
 import { FeaturedProducts } from "./_components/FeaturedProducts";
 import { HeroSection } from "./_components/HeroSection";
+import { Services } from "./_components/Service";
+import { Stats } from "./_components/Stats";
 
 
 export default function PublicPage() {
@@ -10,9 +12,11 @@ export default function PublicPage() {
     <>
      <CategorySection/>
      <HeroSection />
+     <Services />
      <FeaturedProducts />
      <HowItWorks />
      <UnpackingJourney />
+     <Stats/>
     </>
   );
 }
