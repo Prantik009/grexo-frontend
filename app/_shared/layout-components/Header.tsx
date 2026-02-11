@@ -27,6 +27,8 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "../store/auth.store";
 import CartSidebar from "./CartSidebar";
 import { AuthRequiredModal } from "@/components/auth/AuthRequiredModal";
+import { logoutUser } from "../api/auth.api";
+import { setAccessToken } from "../api/axios";
 
 export function Header() {
     const { isMobile } = useViewport();
@@ -38,7 +40,8 @@ export function Header() {
     const router = useRouter();
 
     // ✅ SINGLE source of truth
-    const { isAuthenticated, user, devLogin } = useAuthStore();
+    const { isAuthenticated, user, logout } = useAuthStore();
+
 
     const handleCartClick = () => {
         if (!isAuthenticated) {
@@ -47,6 +50,14 @@ export function Header() {
         }
         setCartOpen(true); // ✅ genuine buyer
     };
+
+    const handleLogout = async () => {
+        await logoutUser();
+        setAccessToken(null);
+        logout();
+        router.push("/");
+    };
+
 
     return (
         <>
@@ -144,18 +155,19 @@ export function Header() {
                                 <Button variant="ghost" size="icon" onClick={handleCartClick}>
                                     <ShoppingCart className="h-5 w-5" />
                                 </Button>
-                            </>
-                        ) : (
-                            <>
-                                {/* DEV ONLY: bypass login */}
+
                                 <Button
                                     variant="ghost"
                                     size="sm"
+                                    onClick={handleLogout}
                                     className="text-xs"
-                                    onClick={()=> devLogin(false)}
                                 >
-                                    Dev Login
+                                    Logout
                                 </Button>
+                            </>
+                        ) : (
+                            <>
+
 
                                 <Button
                                     variant="ghost"

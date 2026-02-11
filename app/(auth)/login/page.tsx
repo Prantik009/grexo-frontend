@@ -1,3 +1,4 @@
+// app/(auth)/login/page.tsx
 "use client";
 
 import GoogleButton from "@/components/auth/GoogleButton";
