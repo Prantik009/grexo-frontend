@@ -1,3 +1,4 @@
+// app/_shared/api/auth.api.ts
 import api from "./axios";
 
 export const registerUser = (data: {

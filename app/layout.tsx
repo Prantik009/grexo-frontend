@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "./_shared/providers/ThemeProvider";
 import AuthProvider from "./_shared/providers/AuthProvider";
+import GoogleProvider from "./_shared/providers/GoogleProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,11 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
-        <ThemeProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
-        </ThemeProvider>
+         <GoogleProvider>
+          <ThemeProvider>
+            <AuthProvider>
+              {children}
+            </AuthProvider>
+          </ThemeProvider>
+        </GoogleProvider>
       </body>
     </html>
   );
