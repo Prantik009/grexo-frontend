@@ -29,6 +29,7 @@ import CartSidebar from "./CartSidebar";
 import { AuthRequiredModal } from "@/components/auth/AuthRequiredModal";
 import { logoutUser } from "../api/auth.api";
 import { setAccessToken } from "../api/axios";
+import { useMutation } from "@tanstack/react-query";
 
 export function Header() {
     const { isMobile } = useViewport();
@@ -51,12 +52,25 @@ export function Header() {
         setCartOpen(true); // ✅ genuine buyer
     };
 
-    const handleLogout = async () => {
-        await logoutUser();
-        setAccessToken(null);
-        logout();
-        router.push("/");
+    const logoutMutation = useMutation({
+        mutationFn: logoutUser,
+        onSuccess: () => {
+            setAccessToken(null);
+            logout();
+            router.push("/");
+        },
+        onError: () => {
+            // Even if API fails, clear local auth
+            setAccessToken(null);
+            logout();
+            router.push("/");
+        },
+    });
+
+    const handleLogout = () => {
+        logoutMutation.mutate();
     };
+
 
 
     return (

@@ -4,6 +4,7 @@
 import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import api from "@/app/_shared/api/axios";
+import { toast } from "sonner";
 
 export default function VerifyEmailPage() {
     const params = useSearchParams();
@@ -17,10 +18,10 @@ export default function VerifyEmailPage() {
         const verify = async () => {
             try {
                 await api.get(`/auth/verify-email?token=${token}`);
-                alert("Email verified successfully!");
+                toast.success("Email verified successfully!");
                 router.push("/login");
             } catch {
-                alert("Invalid or expired token");
+                toast.error("Invalid or expired token");
             }
         };
 

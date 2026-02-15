@@ -116,7 +116,7 @@
 
   --border: oklch(0.28 0.02 160);              /* #2A3631 */
   --input: oklch(0.28 0.02 160);
-  --ring: oklch(0.6 0.12 165);
+  --ring: oklch(59.939% 0.11957 165.076);
 
   /* Greens (slightly brighter for contrast) */
   --primary: oklch(0.6 0.12 165);

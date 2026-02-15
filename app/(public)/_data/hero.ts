@@ -5,7 +5,7 @@ export const HERO_SLIDES = [
     subtitle: "Premium indoor & outdoor plants, delivered fresh.",
     ctaText: "Shop Plants",
     ctaLink: "/plants",
-    imageUrl: "/hero/hero-1.webp",
+    imageUrl: "/hero/nature1.jpg",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const HERO_SLIDES = [
     subtitle: "High quality seeds for every season.",
     ctaText: "Explore Seeds",
     ctaLink: "/seeds",
-    imageUrl: "/hero/hero-2.webp",
+    imageUrl: "/hero/plant_seeds.jpg",
   },
   {
     id: 3,
@@ -21,6 +21,6 @@ export const HERO_SLIDES = [
     subtitle: "Corporate & personal plant gifts made easy.",
     ctaText: "View Gifting",
     ctaLink: "/gifting",
-    imageUrl: "/hero/hero-3.webp",
+    imageUrl: "/hero/git_plant.jpg",
   },
 ]

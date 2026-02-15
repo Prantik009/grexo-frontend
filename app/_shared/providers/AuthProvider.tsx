@@ -1,10 +1,9 @@
-// app/_shared/providers/AuthProvider.tsx
 "use client";
 
 import { useEffect } from "react";
+import { useAuthStore } from "../store/auth.store";
 import { refreshToken } from "../api/auth.api";
 import { setAccessToken } from "../api/axios";
-import { useAuthStore } from "../store/auth.store";
 
 export default function AuthProvider({
     children,
@@ -17,7 +16,7 @@ export default function AuthProvider({
     useEffect(() => {
         const initAuth = async () => {
             try {
-                const { data } = await refreshToken();
+                const data = await refreshToken();
 
                 setAccessToken(data.accessToken);
                 login(data.user);

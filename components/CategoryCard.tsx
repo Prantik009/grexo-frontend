@@ -37,8 +37,8 @@ export function CategoryCard({
        {imageUrl ?  <Image
           src={imageUrl}
           alt={title}
-          width={96}
-          height={96}
+          width={100}
+          height={100}
           className="
             object-contain
             transition-transform duration-300

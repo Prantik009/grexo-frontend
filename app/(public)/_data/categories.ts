@@ -1,17 +1,17 @@
 export const CATEGORIES = [
   {
     title: "Under ₹449",
-    imageUrl: "/categories/bst.avif",
+    imageUrl: "/categories/under449.gif",
     pageRoute: "/plants?price=under-449",
   },
   {
     title: "Best Sellers",
-    imageUrl: "/categories/bst.avif",
+    imageUrl: "/categories/bestseller.avif",
     pageRoute: "/best-sellers",
   },
   {
     title: "Indoor Plants",
-    imageUrl: "/categories/bst.avif",
+    imageUrl: "/categories/indoor.avif",
     pageRoute: "/plants/indoor",
   },
   {
@@ -21,22 +21,22 @@ export const CATEGORIES = [
   },
   {
     title: "Ceramic Pots",
-    imageUrl: "/categories/bst.avif",
+    imageUrl: "/categories/ceramic.avif",
     pageRoute: "/planters/ceramic",
   },
   {
     title: "Fruit Plants",
-    imageUrl: "/categories/bst.avif",
+    imageUrl: "/categories/fruit.avif",
     pageRoute: "/plants/fruit",
   },
   {
     title: "Corporate Gifts",
-    imageUrl: "/categories/bst.avif",
+    imageUrl: "/categories/corporate.avif",
     pageRoute: "/gifting/corporate",
   },
   {
     title: "New Arrivals",
-    imageUrl: "/categories/bst.avif",
+    imageUrl: "/categories/new.avif",
     pageRoute: "/new-arrivals",
   },
 ]

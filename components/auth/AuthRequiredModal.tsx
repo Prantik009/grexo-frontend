@@ -1,3 +1,4 @@
+// components/auth/AuthRequiredModal.tsx
 "use client";
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";

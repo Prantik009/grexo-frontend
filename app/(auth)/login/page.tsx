@@ -31,6 +31,16 @@ export default function LoginPage() {
 
                 {/* Email Auth */}
                 <EmailLoginForm />
+                {/* reset pass  */}
+                <div className="w-full flex justify-end -mt-4">
+                    <Link
+                    href="/forgot-password"
+                    className="text-sm text-muted-foreground hover:text-primary text-right"
+                >
+                    Forgot password?
+                </Link>
+                </div>
+
                 {/* Switch */}
                 <p className="text-sm text-center text-muted-forground">
                     Don't have an account?{" "}

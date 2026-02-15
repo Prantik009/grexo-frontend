@@ -1,8 +1,11 @@
+// components/auth/EmailRegisterForm.tsx
 "use client";
 
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/app/_shared/api/auth.api";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function EmailRegisterForm() {
   const [name, setName] = useState("");
@@ -11,16 +14,20 @@ export default function EmailRegisterForm() {
 
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      await registerUser({ name, email, password });
-      alert("Registered successfully. Please verify your email.");
+  const mutation = useMutation({
+    mutationFn: registerUser,
+    onSuccess: () => {
+      toast.success("Registered successfully. Please verify your email.");
       router.push("/login");
-    } catch (err: any) {
-      alert(err.response?.data?.message || "Registration failed");
-    }
+    },
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message || "Registration failed");
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutation.mutate({ name, email, password });
   };
 
   return (
@@ -51,9 +58,14 @@ export default function EmailRegisterForm() {
         required
       />
 
-      <button className="w-full h-12 rounded-xl bg-primary text-white">
-        Create Account
+      <button
+        type="submit"
+        disabled={mutation.isPending}
+        className="w-full h-12 rounded-xl bg-primary text-white disabled:opacity-70"
+      >
+        {mutation.isPending ? "Creating..." : "Create Account"}
       </button>
     </form>
   );
 }
+

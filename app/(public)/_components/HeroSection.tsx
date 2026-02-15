@@ -71,7 +71,7 @@ export function HeroSection() {
                                             alt={slide.title}
                                             fill
                                             priority
-                                            className="object-contain"
+                                            className="object-fill"
                                         />
                                     </div>
                                 </div>
