@@ -3,6 +3,7 @@
 import axios from "axios";
 import { refreshToken } from "./auth.api";
 import { useAuthStore } from "../store/auth.store";
+import { getCartSessionId } from "../utils/cartSession";
 
 let accessToken: string | null = null;
 
@@ -16,9 +17,12 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
+    config.headers["x-session-id"] = getCartSessionId();
+
     if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
     }
+
     return config;
 });
 

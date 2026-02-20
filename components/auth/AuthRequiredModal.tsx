@@ -1,23 +1,24 @@
 // components/auth/AuthRequiredModal.tsx
+
 "use client";
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import GoogleButton  from "./GoogleButton";
-import  EmailLoginForm  from "./EmailLoginForm";
+import GoogleButton from "./GoogleButton";
+import EmailLoginForm from "./EmailLoginForm";
 
-export function AuthRequiredModal({
-    open,
-    onClose,
-}: {
+interface Props {
     open: boolean;
-    onClose: () => void;
-}) {
+    onOpenChange: (open: boolean) => void;
+}
+
+export function AuthRequiredModal({ open, onOpenChange }: Props) {
     return (
-        <Dialog open={open} onOpenChange={onClose}>
+        <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-90">
                 <h3 className="text-lg font-semibold text-center">
                     Login to continue
                 </h3>
+
                 <p className="text-sm text-muted-foreground text-center">
                     Please login to manage your cart and place orders 🌱
                 </p>

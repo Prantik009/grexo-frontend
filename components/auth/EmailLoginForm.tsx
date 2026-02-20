@@ -22,7 +22,7 @@ export default function EmailLoginForm() {
     onSuccess: (data) => {
       setAccessToken(data.accessToken);
       login(data.user);
-      router.push("/home");
+      router.push("/shop");
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.message || "Login failed")

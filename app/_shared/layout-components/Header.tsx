@@ -30,6 +30,8 @@ import { AuthRequiredModal } from "@/components/auth/AuthRequiredModal";
 import { logoutUser } from "../api/auth.api";
 import { setAccessToken } from "../api/axios";
 import { useMutation } from "@tanstack/react-query";
+import { useCart } from "@/app/_shared/cart/hooks/useCart";
+
 
 export function Header() {
     const { isMobile } = useViewport();
@@ -42,13 +44,12 @@ export function Header() {
 
     // ✅ SINGLE source of truth
     const { isAuthenticated, user, logout } = useAuthStore();
+    const { cart } = useCart();
+    const totalItems =
+        cart?.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
 
 
     const handleCartClick = () => {
-        if (!isAuthenticated) {
-            setAuthOpen(true); // 🚫 viewer → login required
-            return;
-        }
         setCartOpen(true); // ✅ genuine buyer
     };
 
@@ -166,9 +167,21 @@ export function Header() {
                                     </span>
                                 )}
 
-                                <Button variant="ghost" size="icon" onClick={handleCartClick}>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={handleCartClick}
+                                    className="relative"
+                                >
                                     <ShoppingCart className="h-5 w-5" />
+
+                                    {totalItems > 0 && (
+                                        <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-semibold text-white">
+                                            {totalItems}
+                                        </span>
+                                    )}
                                 </Button>
+
 
                                 <Button
                                     variant="ghost"
@@ -189,6 +202,21 @@ export function Header() {
                                     onClick={() => router.push("/login")}
                                 >
                                     <User className="h-5 w-5" />
+                                </Button>
+
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={handleCartClick}
+                                    className="relative"
+                                >
+                                    <ShoppingCart className="h-5 w-5" />
+
+                                    {totalItems > 0 && (
+                                        <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-semibold text-white">
+                                            {totalItems}
+                                        </span>
+                                    )}
                                 </Button>
                             </>
                         )}

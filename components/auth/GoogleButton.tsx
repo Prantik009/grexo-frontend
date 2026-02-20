@@ -25,7 +25,7 @@ export default function GoogleButton() {
             setAccessToken(response.data.accessToken);
             useAuthStore.getState().login(response.data.user);
 
-            router.push("/home");
+            router.push("/shop");
 
           } catch (error) {
             console.error("Google login failed", error);
