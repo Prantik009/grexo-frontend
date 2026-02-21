@@ -7,17 +7,17 @@ import { HeroSection } from "./_components/HeroSection";
 import { Services } from "./_components/Service";
 import { Stats } from "./_components/Stats";
 
-
 export default function PublicPage() {
   return (
     <>
-     <CategorySection/>
-     <HeroSection />
-     <Services />
-     <FeaturedProducts />
-     <HowItWorks />
-     <UnpackingJourney />
-     <Stats/>
+      const unused = 5
+      <CategorySection />
+      <HeroSection />
+      <Services />
+      <FeaturedProducts />
+      <HowItWorks />
+      <UnpackingJourney />
+      <Stats />
     </>
   );
 }
