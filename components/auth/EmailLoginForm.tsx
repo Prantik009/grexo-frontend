@@ -9,6 +9,7 @@ import { useAuthStore } from "@/app/_shared/store/auth.store";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
+import { getErrorMessage } from "@/app/_shared/utils/getErrorMessage";
 
 export default function EmailLoginForm() {
   const [email, setEmail] = useState("");
@@ -24,8 +25,8 @@ export default function EmailLoginForm() {
       login(data.user);
       router.push("/shop");
     },
-    onError: (error: any) => {
-      toast.error(error.response?.data?.message || "Login failed")
+    onError: (error) => {
+      toast.error(getErrorMessage(error, "Login failed"));
     },
   });
 
@@ -58,10 +59,9 @@ export default function EmailLoginForm() {
           href="/resend-verification"
           className="text-xs text-primary hover:underline"
         >
-          Didn’t verify your email?
+          {"Didn’t verify your email?"}
         </Link>
       </div>
-
 
       <button
         type="submit"
@@ -73,4 +73,3 @@ export default function EmailLoginForm() {
     </form>
   );
 }
-

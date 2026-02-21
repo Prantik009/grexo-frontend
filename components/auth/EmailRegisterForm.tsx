@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/app/_shared/api/auth.api";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { getErrorMessage } from "@/app/_shared/utils/getErrorMessage";
 
 export default function EmailRegisterForm() {
   const [name, setName] = useState("");
@@ -20,8 +21,8 @@ export default function EmailRegisterForm() {
       toast.success("Registered successfully. Please verify your email.");
       router.push("/login");
     },
-    onError: (error: any) => {
-      toast.error(error.response?.data?.message || "Registration failed");
+    onError: (error) => {
+      toast.error(getErrorMessage(error, "Registration failed"));
     },
   });
 
@@ -68,4 +69,3 @@ export default function EmailRegisterForm() {
     </form>
   );
 }
-

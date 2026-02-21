@@ -1,14 +1,13 @@
 // components/category/CategoryCard.tsx
-import { useAuthGuard } from "@/app/_shared/hooks/useAuthGuard"
-import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { AuthRequiredModal } from "./auth/AuthRequiredModal"
+import { useAuthGuard } from "@/app/_shared/hooks/useAuthGuard";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { AuthRequiredModal } from "./auth/AuthRequiredModal";
 
 interface CategoryCardProps {
-  imageUrl: string
-  pageRoute: string
-  title: string
+  imageUrl: string;
+  pageRoute: string;
+  title: string;
 }
 
 export function CategoryCard({
@@ -47,17 +46,23 @@ export function CategoryCard({
             height: "clamp(88px, 12vw, 144px)",
           }}
         >
-          {imageUrl ? <Image
-            src={imageUrl}
-            alt={title}
-            width={100}
-            height={100}
-            className="
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt={title}
+              width={100}
+              height={100}
+              className="
             object-contain
             transition-transform duration-300
             group-hover:scale-105
           "
-          /> : <><h3 className=" p-1">{title}</h3></>}
+            />
+          ) : (
+            <>
+              <h3 className=" p-1">{title}</h3>
+            </>
+          )}
         </div>
 
         {/* Title */}
@@ -66,10 +71,7 @@ export function CategoryCard({
         </p>
       </button>
 
-      <AuthRequiredModal
-        open={authOpen}
-        onOpenChange={setAuthOpen}
-      />
+      <AuthRequiredModal open={authOpen} onOpenChange={setAuthOpen} />
     </>
-  )
+  );
 }
