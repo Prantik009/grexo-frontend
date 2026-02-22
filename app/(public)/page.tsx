@@ -10,7 +10,6 @@ import { Stats } from "./_components/Stats";
 export default function PublicPage() {
   return (
     <>
-      const unused = 5
       <CategorySection />
       <HeroSection />
       <Services />
