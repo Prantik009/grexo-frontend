@@ -34,6 +34,7 @@ export default function GoogleButton({
             if (onAuthSuccess) {
               onAuthSuccess();
             } else {
+              console.log("Login success, pushing to shop...");
               router.push("/shop");
             }
           } catch (error) {

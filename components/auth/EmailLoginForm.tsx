@@ -31,6 +31,7 @@ export default function EmailLoginForm({
       if (onAuthSuccess) {
         onAuthSuccess();
       } else {
+        console.log("Login success, pushing to shop...");
         router.push("/shop");
       }
     },
