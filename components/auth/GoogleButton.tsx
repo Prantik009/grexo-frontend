@@ -2,7 +2,7 @@
 "use client";
 
 import { GoogleLogin } from "@react-oauth/google";
-import axios, { setAccessToken } from "@/app/_shared/api/axios";
+import api from "@/app/_shared/api/axios";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/app/_shared/store/auth.store";
 
@@ -12,6 +12,8 @@ export default function GoogleButton({
   onAuthSuccess?: () => void;
 }) {
   const router = useRouter();
+  const setAccessToken = useAuthStore((s) => s.setAccessToken);
+  const login = useAuthStore((s) => s.login);
 
   return (
     <div className="w-full bg-background flex h-11 items-center justify-center rounded-md overflow-hidden">
@@ -20,20 +22,19 @@ export default function GoogleButton({
           try {
             const idToken = credentialResponse.credential;
 
-            const response = await axios.post(
+            const response = await api.post(
               "/auth/google",
               { idToken },
               { withCredentials: true },
             );
 
             setAccessToken(response.data.accessToken);
-            useAuthStore.getState().login(response.data.user);
-            useAuthStore.getState().login(response.data.user);
+            login(response.data.user, response.data.accessToken);
 
             if (onAuthSuccess) {
-              onAuthSuccess(); // modal flow
+              onAuthSuccess();
             } else {
-              router.push("/shop"); // login page flow
+              router.push("/shop");
             }
           } catch (error) {
             console.error("Google login failed", error);

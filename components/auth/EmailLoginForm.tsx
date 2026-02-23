@@ -4,7 +4,6 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "@/app/_shared/api/auth.api";
-import { setAccessToken } from "@/app/_shared/api/axios";
 import { useAuthStore } from "@/app/_shared/store/auth.store";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -21,12 +20,13 @@ export default function EmailLoginForm({
   const router = useRouter();
 
   const login = useAuthStore((s) => s.login);
+  const setAccessToken = useAuthStore((s) => s.setAccessToken);
 
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
       setAccessToken(data.accessToken);
-      login(data.user);
+      login(data.user, data.accessToken);
 
       if (onAuthSuccess) {
         onAuthSuccess();

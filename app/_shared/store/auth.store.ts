@@ -1,37 +1,42 @@
-// app/_shared/store/auth.store.ts
 import { create } from "zustand";
 
 interface User {
-    id: string;
-    name: string;
-    email: string;
-    role?: string;
+  id: string;
+  name: string;
+  email: string;
+  role: string;
 }
 
 interface AuthState {
-    user: User | null;
-    isAuthenticated: boolean;
-
-    login: (user: User) => void;
-    logout: () => void;
+  user: User | null;
+  accessToken: string | null;
+  isAuthenticated: boolean;
+  login: (user: User, token: string) => void;
+  logout: () => void;
+  setAccessToken: (token: string | null) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-    user: null,
-    isAuthenticated: false,
+  user: null,
+  accessToken: null,
+  isAuthenticated: false,
 
-    login: (user) =>
-        set({
-            user,
-            isAuthenticated: true,
-        }),
+  login: (user, token) =>
+    set({
+      user,
+      accessToken: token,
+      isAuthenticated: true,
+    }),
 
-    logout: () =>
-        set({
-            user: null,
-            isAuthenticated: false,
-        }),
+  setAccessToken: (token) =>
+    set({
+      accessToken: token,
+    }),
+
+  logout: () =>
+    set({
+      user: null,
+      accessToken: null,
+      isAuthenticated: false,
+    }),
 }));
-
-
-//shouldRedirectAfterLogin should useful

@@ -24,7 +24,6 @@ import { useAuthStore } from "../store/auth.store";
 import CartSidebar from "./CartSidebar";
 import AuthRequiredModal from "@/components/auth/AuthRequiredModal";
 import { logoutUser } from "../api/auth.api";
-import { setAccessToken } from "../api/axios";
 import { useMutation } from "@tanstack/react-query";
 import { useCart } from "@/app/_shared/cart/hooks/useCart";
 import Image from "next/image";
@@ -39,7 +38,7 @@ export function Header() {
   const router = useRouter();
 
   // ✅ SINGLE source of truth
-  const { isAuthenticated, user, logout } = useAuthStore();
+  const { isAuthenticated, user, logout, setAccessToken } = useAuthStore();
   const { cart } = useCart();
   const totalItems =
     cart?.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
