@@ -22,7 +22,7 @@ import { SearchModal } from "./SearchModal";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "../store/auth.store";
 import CartSidebar from "./CartSidebar";
-import { AuthRequiredModal } from "@/components/auth/AuthRequiredModal";
+import AuthRequiredModal from "@/components/auth/AuthRequiredModal";
 import { logoutUser } from "../api/auth.api";
 import { setAccessToken } from "../api/axios";
 import { useMutation } from "@tanstack/react-query";

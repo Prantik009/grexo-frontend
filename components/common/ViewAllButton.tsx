@@ -2,34 +2,41 @@
 
 import { useRouter } from "next/navigation";
 import { useAuthGuard } from "@/app/_shared/hooks/useAuthGuard";
-import { AuthRequiredModal } from "@/components/auth/AuthRequiredModal";
+import AuthRequiredModal from "@/components/auth/AuthRequiredModal";
 import { Button } from "@/components/ui/button";
 
 interface Props {
-    href: string;
-    children?: React.ReactNode;
+  href: string;
+  children?: React.ReactNode;
 }
 
 export function ViewAllButton({ href, children }: Props) {
-    const router = useRouter();
-    const { authOpen, setAuthOpen, requireAuth } = useAuthGuard();
+  const router = useRouter();
 
-    const handleClick = () => {
-        requireAuth(() => {
-            router.push(href);
-        });
-    };
+  const {
+    authOpen,
+    setAuthOpen,
+    requireAuth,
+    handleLoginSuccess, // ✅ important
+  } = useAuthGuard();
 
-    return (
-        <>
-            <Button variant="ghost" onClick={handleClick}>
-                {children ?? "View All"}
-            </Button>
+  const handleClick = () => {
+    requireAuth(() => {
+      router.push(href);
+    });
+  };
 
-            <AuthRequiredModal
-                open={authOpen}
-                onOpenChange={setAuthOpen}
-            />
-        </>
-    );
+  return (
+    <>
+      <Button variant="ghost" onClick={handleClick}>
+        {children ?? "View All"}
+      </Button>
+
+      <AuthRequiredModal
+        open={authOpen}
+        onOpenChange={setAuthOpen}
+        onAuthSuccess={handleLoginSuccess} // ✅ FIXED
+      />
+    </>
+  );
 }

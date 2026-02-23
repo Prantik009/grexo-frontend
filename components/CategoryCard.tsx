@@ -2,7 +2,7 @@
 import { useAuthGuard } from "@/app/_shared/hooks/useAuthGuard";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { AuthRequiredModal } from "./auth/AuthRequiredModal";
+import AuthRequiredModal from "./auth/AuthRequiredModal";
 
 interface CategoryCardProps {
   imageUrl: string;
@@ -16,7 +16,8 @@ export function CategoryCard({
   title,
 }: CategoryCardProps) {
   const router = useRouter();
-  const { authOpen, setAuthOpen, requireAuth } = useAuthGuard();
+  const { authOpen, setAuthOpen, requireAuth, handleLoginSuccess } =
+    useAuthGuard();
 
   const handleClick = () => {
     requireAuth(() => {
@@ -71,7 +72,11 @@ export function CategoryCard({
         </p>
       </button>
 
-      <AuthRequiredModal open={authOpen} onOpenChange={setAuthOpen} />
+      <AuthRequiredModal
+        open={authOpen}
+        onOpenChange={setAuthOpen}
+        onAuthSuccess={handleLoginSuccess}
+      />
     </>
   );
 }

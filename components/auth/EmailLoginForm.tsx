@@ -6,24 +6,33 @@ import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "@/app/_shared/api/auth.api";
 import { setAccessToken } from "@/app/_shared/api/axios";
 import { useAuthStore } from "@/app/_shared/store/auth.store";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 import { getErrorMessage } from "@/app/_shared/utils/getErrorMessage";
+import { useRouter } from "next/navigation";
 
-export default function EmailLoginForm() {
+export default function EmailLoginForm({
+  onAuthSuccess,
+}: {
+  onAuthSuccess?: () => void;
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const login = useAuthStore((s) => s.login);
-  const router = useRouter();
 
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
       setAccessToken(data.accessToken);
       login(data.user);
-      router.push("/shop");
+
+      if (onAuthSuccess) {
+        onAuthSuccess();
+      } else {
+        router.push("/shop");
+      }
     },
     onError: (error) => {
       toast.error(getErrorMessage(error, "Login failed"));

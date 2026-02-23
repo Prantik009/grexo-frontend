@@ -6,7 +6,11 @@ import axios, { setAccessToken } from "@/app/_shared/api/axios";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/app/_shared/store/auth.store";
 
-export default function GoogleButton() {
+export default function GoogleButton({
+  onAuthSuccess,
+}: {
+  onAuthSuccess?: () => void;
+}) {
   const router = useRouter();
 
   return (
@@ -19,14 +23,18 @@ export default function GoogleButton() {
             const response = await axios.post(
               "/auth/google",
               { idToken },
-              { withCredentials: true }
+              { withCredentials: true },
             );
 
             setAccessToken(response.data.accessToken);
             useAuthStore.getState().login(response.data.user);
+            useAuthStore.getState().login(response.data.user);
 
-            router.push("/shop");
-
+            if (onAuthSuccess) {
+              onAuthSuccess(); // modal flow
+            } else {
+              router.push("/shop"); // login page flow
+            }
           } catch (error) {
             console.error("Google login failed", error);
           }
@@ -40,8 +48,6 @@ export default function GoogleButton() {
         shape="rectangular"
         width="100%"
         logo_alignment="left"
-        
-
       />
     </div>
   );
