@@ -2,10 +2,9 @@ import axios from "axios";
 import { refreshToken } from "./auth.api";
 import { useAuthStore } from "../store/auth.store";
 import { getCartSessionId } from "../utils/cartSession";
-import { ENV } from "@/app/config/env";
 
 const api = axios.create({
-  baseURL: ENV.API_URL,
+  baseURL: "/api",
   withCredentials: true,
 });
 

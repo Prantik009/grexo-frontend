@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "https://plant-site-backend.onrender.com/api/:path*"
+        }
+    ]
+}
