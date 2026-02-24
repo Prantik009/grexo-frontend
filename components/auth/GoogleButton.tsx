@@ -12,7 +12,6 @@ export default function GoogleButton({
   onAuthSuccess?: () => void;
 }) {
   const router = useRouter();
-  const setAccessToken = useAuthStore((s) => s.setAccessToken);
   const login = useAuthStore((s) => s.login);
 
   return (
@@ -28,7 +27,6 @@ export default function GoogleButton({
               { withCredentials: true },
             );
 
-            setAccessToken(response.data.accessToken);
             login(response.data.user, response.data.accessToken);
 
             if (onAuthSuccess) {

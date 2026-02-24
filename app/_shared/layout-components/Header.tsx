@@ -38,7 +38,8 @@ export function Header() {
   const router = useRouter();
 
   // ✅ SINGLE source of truth
-  const { isAuthenticated, user, logout, setAccessToken } = useAuthStore();
+  const { accessToken, user, logout } = useAuthStore();
+  const isAuthenticated = !!accessToken;
   const { cart } = useCart();
   const totalItems =
     cart?.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
@@ -50,13 +51,11 @@ export function Header() {
   const logoutMutation = useMutation({
     mutationFn: logoutUser,
     onSuccess: () => {
-      setAccessToken(null);
       logout();
       router.push("/");
     },
     onError: () => {
       // Even if API fails, clear local auth
-      setAccessToken(null);
       logout();
       router.push("/");
     },

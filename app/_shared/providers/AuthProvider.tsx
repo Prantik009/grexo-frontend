@@ -1,3 +1,4 @@
+// app/_shared/providers/AuthProvider.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -11,7 +12,6 @@ export default function AuthProvider({
 }) {
   const login = useAuthStore((s) => s.login);
   const logout = useAuthStore((s) => s.logout);
-  const setAccessToken = useAuthStore((s) => s.setAccessToken);
 
   const [isReady, setIsReady] = useState(false);
 
@@ -20,7 +20,6 @@ export default function AuthProvider({
       try {
         const data = await refreshToken();
 
-        setAccessToken(data.accessToken);
         login(data.user, data.accessToken);
       } catch {
         logout();
@@ -30,7 +29,7 @@ export default function AuthProvider({
     };
 
     initAuth();
-  }, [login, logout, setAccessToken]);
+  }, [login, logout]);
 
   if (!isReady) return null;
 

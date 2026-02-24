@@ -1,3 +1,5 @@
+// app/_shared/store/auth.store.ts
+
 import { create } from "zustand";
 
 interface User {
@@ -10,7 +12,6 @@ interface User {
 interface AuthState {
   user: User | null;
   accessToken: string | null;
-  isAuthenticated: boolean;
   login: (user: User, token: string) => void;
   logout: () => void;
   setAccessToken: (token: string | null) => void;
@@ -19,13 +20,11 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   accessToken: null,
-  isAuthenticated: false,
 
   login: (user, token) =>
     set({
       user,
       accessToken: token,
-      isAuthenticated: true,
     }),
 
   setAccessToken: (token) =>
@@ -37,6 +36,5 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({
       user: null,
       accessToken: null,
-      isAuthenticated: false,
     }),
 }));
