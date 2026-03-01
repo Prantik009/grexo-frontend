@@ -122,7 +122,7 @@ export function Header() {
             <Image
               src="/grexo_logo.webp"
               alt="Grexo"
-              className="h-8 sm:h-12"
+              className="h-8 sm:h-12 object-cover"
               height={100}
               width={100}
             />

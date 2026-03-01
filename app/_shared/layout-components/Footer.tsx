@@ -23,7 +23,13 @@ export const Footer = () => {
           {/* ---------------- COMPANY ---------------- */}
           <div className="space-y-3">
             <Link href="/" className="shrink-0">
-              <Image src="/logo.png" alt="Logo" width={120} height={40} />
+              <Image
+                src="/grexo_logo.webp"
+                alt="Grexo"
+                className="h-8 sm:h-12 object-cover"
+                height={100}
+                width={100}
+              />
             </Link>
 
             <p className="text-sm text-muted-foreground">

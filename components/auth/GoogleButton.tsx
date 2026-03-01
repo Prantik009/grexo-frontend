@@ -46,7 +46,7 @@ export default function GoogleButton({
         size="large"
         text="continue_with"
         shape="rectangular"
-        width="100%"
+        width={300}
         logo_alignment="left"
       />
     </div>
